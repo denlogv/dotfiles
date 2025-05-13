@@ -1,0 +1,64 @@
+{
+  "models": [
+    {
+      "title": "LM Studio",
+      "provider": "lmstudio",
+      "model": "AUTODETECT",
+      "apiBase": "http://localhost:1234/v1/",
+      "contextLength": 32765
+    },
+    {
+      "apiBase": "http://localhost:1234/v1/",
+      "model": "AUTODETECT",
+      "title": "Autodetect",
+      "provider": "lmstudio"
+    }
+  ],
+  "customCommands": [
+    {
+      "name": "test",
+      "prompt": "{{{ input }}}\n\nWrite a comprehensive set of unit tests for the selected code. It should setup, run tests that check for correctness including important edge cases, and teardown. Ensure that the tests are complete and sophisticated. Give the tests just as chat output, don't edit any file.",
+      "description": "Write unit tests for highlighted code"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "LM Studio - Autocomplete",
+    "provider": "lmstudio",
+    "model": "AUTODETECT",
+    "apiBase": "http://localhost:1234/v1/"
+  },
+  "completionOptions": {
+    "maxTokens": 32765
+  },
+  "embeddingsProvider": {
+    "title": "LM Studio - Embeddings",
+    "provider": "openai",
+    "model": "nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q8_0.gguf",
+    "apiBase": "http://localhost:1234/v1/"
+  },
+  "contextProviders": [
+    {
+      "name": "codebase",
+      "params": {
+        "nRetrieve": 25,
+        "nFinal": 5,
+        "useReranking": true
+      }
+    },
+    {
+      "name": "currentFile"
+    },
+    {
+      "name": "open"
+    },
+    {
+      "name": "file"
+    },
+    {
+      "name": "web",
+      "params": {
+        "n": 5
+      }
+    }
+  ]
+}
