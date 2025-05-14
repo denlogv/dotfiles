@@ -85,7 +85,7 @@ plugins=(git poetry)
 source $ZSH/oh-my-zsh.sh
 
 export MANPATH="/usr/local/man:$MANPATH"
-export PATH="$PATH:~/.local/bin:/opt/homebrew/opt/fzf/bin"
+export PATH="$PATH:$HOME/.local/bin:/opt/homebrew/opt/fzf/bin"
 
 copy_to_clipboard() {
     string_to_copy="$@"
@@ -119,6 +119,7 @@ alias gst="git status"
 alias sz="source ~/.zshrc"
 alias vz="nvim ~/.zshrc"
 alias vf="fd --type f --hidden --exclude .git | fzf | xargs -r nvim"
+alias sg=sgpt
 
 source ~/.zshrc.additional
 source ~/.zshrc.private
