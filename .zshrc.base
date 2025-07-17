@@ -80,9 +80,8 @@ ZSH_THEME="my-fino-time"
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="false"
 
-plugins=(git poetry)
-
 source $ZSH/oh-my-zsh.sh
+plugins=(git poetry docker)
 
 export MANPATH="/usr/local/man:$MANPATH"
 export PATH="$PATH:$HOME/.local/bin:/opt/homebrew/opt/fzf/bin"
@@ -114,13 +113,20 @@ export FZF_DEFAULT_OPTS="
 alias cl=copy_to_clipboard
 alias v=nvim
 alias tmux="tmux -f ~/.config/tmux/tmux.conf"
+
 alias dps="docker ps --no-trunc"
+alias dcl="docker compose logs --follow"
+alias dcu="docker compose up"
+alias dcud="docker compose up -d"
+alias dcd="docker compose down"
+
 alias gst="git status"
 alias sz="source ~/.zshrc"
 alias vz="nvim ~/.zshrc"
 alias vf="fd --type f --hidden --exclude .git | fzf | xargs -r nvim"
 alias sg=sgpt
 
-source ~/.zshrc.additional
-source ~/.zshrc.private
+if [ -f "$HOME/.zshrc.private" ] ; then
+  source "$HOME/.zshrc.private"
+fi
 

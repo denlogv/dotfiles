@@ -2,16 +2,11 @@
   "models": [
     {
       "title": "LM Studio",
-      "provider": "lmstudio",
+      "provider": "openai",
       "model": "AUTODETECT",
-      "apiBase": "http://localhost:1234/v1/",
-      "contextLength": 32765
-    },
-    {
-      "apiBase": "http://localhost:1234/v1/",
-      "model": "AUTODETECT",
-      "title": "Autodetect",
-      "provider": "lmstudio"
+      "apiBase": "http://127.0.0.1:1234/v1/",
+      "contextLength": 32768,
+      "apiKey": "not_needed"
     }
   ],
   "customCommands": [
@@ -19,14 +14,18 @@
       "name": "test",
       "prompt": "{{{ input }}}\n\nWrite a comprehensive set of unit tests for the selected code. It should setup, run tests that check for correctness including important edge cases, and teardown. Ensure that the tests are complete and sophisticated. Give the tests just as chat output, don't edit any file.",
       "description": "Write unit tests for highlighted code"
+    },
+    {
+      "name": "Docstrings for tests",
+      "prompt": "{{{ input }}}\n\nWrite docstrings for tests in this file. Use the following standard to accomplish this:\n\nrepeat the function signature here\n\"\"\"Short description.\n\nPre-Condition: Describe shortly what has to be met before executing the test.\n\nAction: Describe shortly what is the main action in the test code.\n\nExpected Result: Describe shortly what the expectation of this test is.\n\"\"\"\n\nIf you see classes or methods that are helpers, then you must write docstrings for them using the Google standard to accomplish this:\n\nrepeat the function signature here\n\"\"\"The short description.\n\nThe long description.\n\nArgs:\n    arg1 (str): Description of arg1\n\nReturns:\n    tuple[str, Any]: Description of the return value\n\"\"\"\n\nBe sure to use markdown for Python. It has to look like normal python code, just replace actual implementation with pass.",
+      "description": "Generate docstrings for current file"
+    },
+    {
+      "name": "Docstrings for code",
+      "prompt": "{{{ input }}}\n\nWrite docstrings for classes and methods in this file. Use the Google standard to accomplish this:\n\n\"\"\"The short description.\n\nThe long description.\n\nArgs:\n    arg1 (str): Description of arg1\n\nReturns:\n    tuple[str, Any]: Description of the return value\n\"\"\"",
+      "description": "Generate docstrings for current file"
     }
   ],
-  "tabAutocompleteModel": {
-    "title": "LM Studio - Autocomplete",
-    "provider": "lmstudio",
-    "model": "AUTODETECT",
-    "apiBase": "http://localhost:1234/v1/"
-  },
   "completionOptions": {
     "maxTokens": 32765
   },
@@ -59,6 +58,9 @@
       "params": {
         "n": 5
       }
+    },
+    {
+      "name": "clipboard"
     }
   ]
 }
